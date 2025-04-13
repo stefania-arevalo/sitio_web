@@ -1,0 +1,453 @@
+/*Reset del CSS*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+/*grid container*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 2fr; /* Menú lateral 250px, resto del contenido flexible */
+    grid-template-rows: 40px 1fr auto auto; /* Fila superior automática, contenido principal flexible y footer automático */
+    grid-template-areas: 
+        "linea-superior linea-superior"
+        "header main"
+        "nav main"
+        "nav foo";
+}
+
+/* Estilo para la línea superior */
+.linea-superior {
+    grid-area: linea-superior;
+    background-color: #fe78c4; /* Color de fondo de la línea superior */
+    color: white; /* Color del texto */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+.search-button {
+    background-color: transparent; /* Fondo transparente */
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+h2 {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+a {
+    text-decoration: none;
+    color: #030000;
+}
+
+/* header */
+.cabecera {
+    grid-area: header;
+    width:100%;
+    background-color: #030000;
+    color: #fe78c4; /* Color del texto */
+    padding: 20px 0; /* Espacio alrededor del texto */
+}
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px; /* Ancho del menú */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    background-color: #030000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.nav-list {
+    list-style-type: none; /* Elimina las viñetas */
+    display: flex; /* Cambia a disposición horizontal */
+    flex-direction: column;
+    gap: 40px; /* Espacio entre los elementos del menú */
+    padding: 1rem 0;
+    margin: 0;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #fe78c4;
+    font-size: 1.2rem;
+    padding: 5px;
+    display: block;
+    text-align: center;
+}
+
+.logo {
+    height: 80px; /* Ajusta el tamaño del logo */
+    margin-bottom: 20px; /* Agrega espacio debajo del logo */
+}
+
+/* main */
+.banner {
+    grid-area: main;
+    height: 380px; /* Ajusta la altura para que sea más rectangular */
+    background-image: url(../assets/local.jpeg);
+    object-fit: cover; /* Hace que la imagen se ajuste sin recortarse */
+    background-size: cover;
+    object-position: top; /* Muestra la parte superior en vez del centro */
+}
+
+.container-categorias {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se acomoden si el espacio no es suficiente */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;
+    gap: 20px; /* Espacio entre elementos */
+    padding: 20px;
+}
+
+.categoria {
+    grid-area: main;
+    display: flex;
+    gap: 10px; /* Espacio entre cuadros */
+}
+
+.categoria-box{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width: 330px;
+    height: 380px;
+    gap: 10px; /* Espacio entre cuadros */
+    border-radius: 10px;
+    overflow: hidden; /* Evita que la imagen sobresalga */
+}
+
+.categoria-box img {
+    width: 100%;
+    height: 100%;
+}
+
+.categoria-text {
+    position: absolute;
+    top: 50%; 
+    left: 10%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro semi-transparente */
+    color: rgb(219, 74, 123);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    width: 80%;
+}
+
+.productos-destacados {
+    padding: 30px;
+}
+
+.productos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.producto img {
+    width: 200px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.productos {
+    display: flex;
+    gap: 20px; 
+}
+
+.producto {
+    width: 180px;  
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-decoration: none;  /* Quita el subrayado del enlace */
+}
+
+.info-producto {
+    padding: 10px;
+}
+
+.nombre-producto {
+    color: #fe78c4;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.precio-producto {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.testimonios {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.testimonio {
+    display: flex;
+    align-items: center;
+    background: #ffd6d6;
+    padding: 1rem;
+    border-radius: 10px;
+    max-width: 500px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonio img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.testimonio .texto p {
+    font-size: 14px;
+    color: #333;
+}
+
+.testimonio .texto h4 {
+    margin-top: 0.5rem;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* footer */
+.pie {
+    grid-area: foo;
+    background-color: #030000;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.derechos-de-autor p {
+    font-size: 0.9rem;
+}
+
+.redes-sociales ul li {
+    list-style-type: none; 
+}
+
+.redes-sociales ul li a {
+    padding: 0;
+    margin: 10px 0;
+    color: #ffd6d6;
+}
+
+/*Contacto */
+#contacto {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    text-align: left;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    grid-template-rows: auto auto; /* Dos filas: contenido + formulario */
+    gap: 20px; /* Espaciado entre elementos */
+}
+
+.contacto-contenedor {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    grid-column: span 2;
+}
+
+.info {
+    font-size: 1rem;
+    color: #555;
+}
+
+.mapa iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.formulario {
+    grid-column: span 2; /* Ocupa ambas columnas */
+    background-color: #fe78c4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="submit"] {
+    background-color: #030000;
+    color: #fe78c4;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/*Cambios*/
+#politica-devolucion {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+#politica-devolucion h2 {
+    font-size: 1.8rem;
+    color: #030000;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+#politica-devolucion p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+#politica-devolucion ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+#politica-devolucion li {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #555;
+}
+
+
+/*table*/
+@media (max-width: 768px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 4fr auto auto; /* Fila superior automática, contenido principal flexible y footer automático */
+        grid-template-areas: 
+            "linea-superior"
+            "nav"
+            "header"
+            "main"
+            "foo";
+    }
+
+    .linea-superior{
+        grid-area: linea-superior;
+    }
+    
+    .banner {
+        grid-area: heqder;
+    }
+
+    .cabecera {
+        grid-area: nav;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+    }
+
+    .nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .container-categorias {
+        display: block;
+        margin: 0;
+        padding: 10px;
+       
+    }
+  
+    /* Sobrescribir la regla de .categoria para que apile sus elementos verticalmente */
+    .categoria {
+        display: block;
+        width: 100%;
+    }
+  
+    .categoria-box {
+        display: block;
+        width: 100%;         
+        height: 150px;        
+        position: relative;
+        margin-bottom: 20px;  /* Separa verticalmente cada categoría */
+    }
+  
+    /* La imagen se ajusta al tamaño del contenedor sin distorsionarse */
+    .categoria-box img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .categoria-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      width: auto;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: rgb(219, 74, 123);
+      border-radius: 5px;
+      font-size: 16px;
+  }
+
+    .productos {
+        flex-direction: column;
+    }
+
+
+    #carouselProductos .carousel-item img {
+        height: 500px; 
+        object-fit: cover; /* Para que la imagen se recorte adecuadamente sin distorsionarse */
+    }
+
+    .banner {
+        grid-area: main;
+        width:768px;
+    }
+
+    .pie {
+        grid-area: foo;
+    }
+}
+
+/*mobile*/
+@media (max-width: 480px) {
+}

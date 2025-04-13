@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!-- BS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <!--estilos -->
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Indumentaria Romina Escobar</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+</head>
+<body>
+    <div class="grid-container">
+        <!-- Línea superior con texto -->
+        <div class="linea-superior">
+            <p>Envíos a todo el país a partir de $50.000</p>
+        </div>
+        <header class="cabecera">
+            <!-- Menú lateral de navegación -->
+            <nav class="nav">
+                <!-- Logo -->
+                <img class="logo" src="assets/favicon.png" alt="Logo de Indumentaria Romina Escobar">
+                <ul class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="./pages/productos.html">Productos</a></li>
+                    <li><a href="./pages/contacto.html">Contacto</a></li>
+                    <li><a href="./pages/preguntas-frecuentes.html">FAQ</a></li>
+                    <li><a href="./pages/cambios.html">Cambios</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Contenedor para el resto del contenido -->
+        <main class="main-content">
+            <button class="search-button" aria-label="Buscar">
+                <img src="assets/search-icon.png" alt="Ícono de búsqueda" width="30" height="30">
+            </button>
+            <!-- Banner -->
+            <div class="banner"></div>  
+            <!-- Categorías -->
+            <section class="container-categorias">
+                <article class="categoria">
+                    <a href="pages/indumentaria1.html" class="categoria-box">
+                        <img src="assets/indumentaria.jpg" alt="Indumentaria">
+                        <span class="categoria-text">Indumentaria</span>
+                    </a>
+                    <a href="pages/calzado.html" class="categoria-box">
+                        <img src="assets/calzado.jpg" alt="Calzado">
+                        <span class="categoria-text">Calzado</span>
+                    </a>
+                    <a href="pages/accesorios.html" class="categoria-box">
+                        <img src="assets/accesorios.jpg" alt="Accesorios">
+                        <span class="categoria-text">Accesorios</span>
+                    </a>
+                </article>
+            </section>
+            <section class="productos-destacados d-none d-lg-block">
+                <section class="productos-container">
+                    <!-- Acá debe ir un Botón: Flecha izquierda -->
+                    <section class="productos">
+                        <article class="producto">
+                            <a href="pages/producto1.html">
+                                <img src="assets/remera.jpg" alt="Producto 1">
+                                <div class="info-producto">
+                                    <span class="nombre-producto">Producto 1</span>
+                                    <span class="precio-producto">$X.XXX</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="producto">
+                            <a href="pages/producto2.html">
+                                <img src="assets/campera.jpg" alt="Producto 2">
+                                <div class="info-producto">
+                                    <span class="nombre-producto">Producto 2</span>
+                                    <span class="precio-producto">$X.XXX</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="producto">
+                            <a href="pages/producto3.html">
+                                <img src="assets/conjunto.jpg" alt="Producto 3">
+                                <div class="info-producto">
+                                    <span class="nombre-producto">Producto 3</span>
+                                    <span class="precio-producto">$X.XXX</span>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="producto">
+                            <a href="pages/producto4.html">
+                                <img src="assets/bbo.jpg" alt="Producto 4">
+                                <div class="info-producto">
+                                    <span class="nombre-producto">Producto 4</span>
+                                    <span class="precio-producto">$X.XXX</span>
+                                </div>
+                            </a>
+                        </article>
+                    </section>
+                    <!-- Acá debe ir un Botón: Flecha derecha -->
+                </section>
+            </section>
+        
+            <section class="productos-destacados d-block d-lg-none">
+                <!-- Título de la sección -->
+                <h2 class="text-center mb-3">Productos Destacados</h2>
+                <!-- Carrusel de Bootstrap -->
+                <div id="carouselProductos" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <!-- Slide 1 -->
+                    <article class="carousel-item active">
+                      <a href="pages/producto1.html">
+                        <img src="assets/remera.jpg" class="d-block w-100" alt="Producto 1">
+                        <div class="info-producto text-center mt-2">
+                          <span class="nombre-producto d-block">Producto 1</span>
+                          <span class="precio-producto">$X.XXX</span>
+                        </div>
+                      </a>
+                    </article>
+                    <!-- Slide 2 -->
+                    <article class="carousel-item">
+                      <a href="pages/producto2.html">
+                        <img src="assets/campera.jpg" class="d-block w-100" alt="Producto 2">
+                        <div class="info-producto text-center mt-2">
+                          <span class="nombre-producto d-block">Producto 2</span>
+                          <span class="precio-producto">$X.XXX</span>
+                        </div>
+                      </a>
+                    </article>
+                    <!-- Slide 3 -->
+                    <article class="carousel-item">
+                      <a href="pages/producto3.html">
+                        <img src="assets/conjunto.jpg" class="d-block w-100" alt="Producto 3">
+                        <div class="info-producto text-center mt-2">
+                          <span class="nombre-producto d-block">Producto 3</span>
+                          <span class="precio-producto">$X.XXX</span>
+                        </div>
+                      </a>
+                    </article>
+                    <!-- Slide 4 -->
+                    <article class="carousel-item">
+                      <a href="pages/producto4.html">
+                        <img src="assets/bbo.jpg" class="d-block w-100" alt="Producto 4">
+                        <div class="info-producto text-center mt-2">
+                          <span class="nombre-producto d-block">Producto 4</span>
+                          <span class="precio-producto">$X.XXX</span>
+                        </div>
+                      </a>
+                    </article>
+                  </div>
+                  <!-- Controles del carrusel -->
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductos" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselProductos" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                  </button>
+                </div>
+            </section>
+              
+            
+            <!-- Testimonios -->
+            <section id="testimonios" class="testimonios d-none d-lg-flex">
+                <h2>Testimonios</h2>
+                <article class="testimonio">
+                    <img src="assets/usuario-sin-foto.png" alt="Foto de Juan" width="50" height="50">
+                    <div class="texto">
+                        <p>"¡Excelente calidad y atención! Recomiendo 100%."</p>
+                        <h4>Juan Pérez</h4>
+                    </div>
+                </article>
+                <article class="testimonio">
+                    <img src="assets/usuario-sin-foto.png" alt="Foto de María" width="50" height="50">
+                    <div class="texto">
+                        <p>"Siempre encuentro lo que busco y a buen precio."</p>
+                        <h4>María López</h4>
+                    </div>
+                </article>
+            </section>
+            <!-- SOLO EN VISTA tablet -->
+            <section id="testimonios" class="d-none d-md-block d-lg-none py-4">
+                <h2 class="text-center mb-4">Testimonios</h2>
+            
+                <div id="carouselTestimoniosTablet" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    
+                    <!-- Testimonio 1 -->
+                    <article class="carousel-item active">
+                    <div class="card mx-auto p-4 text-center" style="width: 90%; max-width: 240px; border-radius: 20px; min-height: 420px;">
+                        <p class="fs-6 mb-4" style="text-align: justify;">
+                        “¡Excelente calidad y atención! Recomiendo 100%. Estoy feliz con mi compra, llegó en tiempo y forma, y la atención fue muy cálida. Volveré a comprar sin dudas.”
+                        </p>
+                        <img src="assets/usuario-sin-foto.png" alt="Foto Juan Pérez" class="rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        <p class="fw-semibold mb-0">Juan Pérez</p>
+                    </div>
+                    </article>
+            
+                    <!-- Testimonio 2 -->
+                    <article class="carousel-item">
+                    <div class="card mx-auto p-4 text-center" style="width: 90%; max-width: 240px; border-radius: 20px; min-height: 420px;">
+                        <p class="fs-6 mb-4" style="text-align: justify;">
+                        “Siempre encuentro lo que busco y a muy buen precio. Me encanta que suban novedades seguido, me mantiene al tanto de todo. ¡Gracias por la buena onda!”
+                        </p>
+                        <img src="assets/usuario-sin-foto.png" alt="Foto María López" class="rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        <p class="fw-semibold mb-0">María López</p>
+                    </div>
+                    </article>
+            
+                    <!-- Testimonio 3 -->
+                    <article class="carousel-item">
+                    <div class="card mx-auto p-4 text-center" style="width: 90%; max-width: 240px; border-radius: 20px; min-height: 420px;">
+                        <p class="fs-6 mb-4" style="text-align: justify;">
+                        “Atención personalizada, envío rápido, y ropa de excelente calidad. ¡Me encantó! Ya recomendé la tienda a mis amigas.”
+                        </p>
+                        <img src="assets/usuario-sin-foto.png" alt="Foto Carla Ramírez" class="rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                        <p class="fw-semibold mb-0">Carla Ramírez</p>
+                    </div>
+                    </article>
+            
+                </div>
+            
+                <!-- Controles del carrusel -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimoniosTablet" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselTestimoniosTablet" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+                </div>
+            </section>
+  
+  
+              
+        </main>    
+        <!-- Footer -->
+        <footer class="pie">
+            <section class="footer">
+                <article class="derechos-de-autor">
+                    <p>&copy; 2025 Stefania. Todos los derechos reservados</p><br>
+                </article>
+                <article class="redes-sociales">
+                    <ul>
+                        <li><a href="https://www.facebook.com/profile.php?id=61561331674505" target="_blank">Indumentaria Romina Escobar</a></li>
+                        <li><a href="https://www.instagram.com/indumentaria.romina.escobar/?fbclid=IwY2xjawI6rIBleHRuA2FlbQIxMAABHbGjFCS5HQev4QtK031FrJKqLGRcU6aMMPn8bXH61hYur2qMMCEAbMXJzg_aem_BDgbEAHC7xtkrfqz7ZKMkw#" target="_blank">@indumentaria.romina.escobar</a></li>
+                    </ul>
+                </article>
+            </section>
+        </footer>
+    </div>
+    <!-- scripts-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+</body>
+</html>
