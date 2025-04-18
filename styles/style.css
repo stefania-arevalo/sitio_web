@@ -96,7 +96,6 @@ a {
     grid-area: main;
     height: 380px; /* Ajusta la altura para que sea más rectangular */
     background-image: url(../assets/local.jpeg);
-    object-fit: cover; /* Hace que la imagen se ajuste sin recortarse */
     background-size: cover;
     object-position: top; /* Muestra la parte superior en vez del centro */
 }
@@ -438,7 +437,7 @@ form input[type="submit"] {
       color: rgb(219, 74, 123);
       border-radius: 5px;
       font-size: 16px;
-  }
+    }
 
     .productos {
         flex-direction: column;
@@ -458,6 +457,26 @@ form input[type="submit"] {
     .pie {
         grid-area: foo;
     }
+
+    #contacto {
+       
+        grid-template-columns: 1fr; /* Solo una columna */
+      }
+    
+    .contacto-contenedor {
+        grid-template-columns: 1fr; /* También en una sola columna */
+    }
+    
+    .formulario {
+        grid-column: span 1; /* Ya no necesita ocupar 2 columnas */
+    }
+
+    .mapa iframe {
+        width: 100%;
+        height: 300px;
+        display: block;
+      }
+    
 }
 
 /*mobile*/
