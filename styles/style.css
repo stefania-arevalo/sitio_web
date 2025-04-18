@@ -266,6 +266,9 @@ a {
     color: #ffd6d6;
 }
 
+/* Productos */
+
+
 /*Contacto */
 #contacto {
     max-width: 600px;
@@ -481,4 +484,5 @@ form input[type="submit"] {
 
 /*mobile*/
 @media (max-width: 480px) {
+    
 }
