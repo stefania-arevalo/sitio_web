@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <!-- BS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
     <!--estilos -->
     <link rel="stylesheet" href="styles/style.css">
     <title>Indumentaria Romina Escobar</title>
@@ -61,7 +63,10 @@
             </section>
             <section class="productos-destacados d-none d-lg-block">
                 <section class="productos-container">
-                    <!-- Acá debe ir un Botón: Flecha izquierda -->
+                    <!-- Botón izquierdo -->
+                    <button class="btn-flecha izquierda btn btn-light rounded-circle shadow" id="btnIzquierda">
+                        <i class="bi bi-chevron-left"></i>
+                    </button>
                     <section class="productos">
                         <article class="producto">
                             <a href="pages/producto1.html">
@@ -100,7 +105,10 @@
                             </a>
                         </article>
                     </section>
-                    <!-- Acá debe ir un Botón: Flecha derecha -->
+                     <!-- Botón derecho -->
+                    <button class="btn-flecha derecha btn btn-light rounded-circle shadow" id="btnDerecha">
+                        <i class="bi bi-chevron-right"></i>
+                    </button>
                 </section>
             </section>
         
@@ -183,7 +191,7 @@
                 </article>
             </section>
             <!-- SOLO EN VISTA tablet -->
-            <section id="testimonios" class="d-none d-md-block d-lg-none py-4">
+            <section id="testimoniosTablet" class="d-none d-md-block d-lg-none py-4">
                 <h2 class="text-center mb-4">Testimonios</h2>
             
                 <div id="carouselTestimoniosTablet" class="carousel slide" data-bs-ride="carousel">

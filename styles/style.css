@@ -179,6 +179,18 @@ a {
     text-decoration: none;  /* Quita el subrayado del enlace */
 }
 
+.btn-flecha:hover {
+    opacity: 1;
+  }
+  
+.btn-flecha.izquierda {
+    left: -20px;
+  }
+  
+.btn-flecha.derecha {
+    right: -20px;
+  }
+
 .info-producto {
     padding: 10px;
 }
