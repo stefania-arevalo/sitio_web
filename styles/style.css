@@ -268,7 +268,60 @@ a {
 }
 
 /* Productos */
+.card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+/* Hover suave en cada tarjeta */
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen de producto */
+.card-img-top {
+  object-fit: cover;
+  height: 300px; /* ajustá esto según la proporción de tus imágenes */
+}
+
+.color-options .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #fff;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+/* Título del producto */
+.card-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Precio */
+.card-text {
+  font-size: 1.1rem;
+  color: #fe78c4; /* rosa fuerte */
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Botón personalizado */
+.card .btn-primary {
+  background-color: #fe78c4;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+.card .btn-primary:hover {
+  background-color: #fe78c4;
+}
 
 /*Contacto */
 #contacto {
