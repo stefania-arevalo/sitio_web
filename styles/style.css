@@ -98,7 +98,7 @@ a {
     width: 100%;
     background-image: url(../assets/local.jpeg);
     background-size: cover;
-    object-position: top; /* Muestra la parte superior en vez del centro */
+    background-position: center;
 }
 
 .container-categorias {
