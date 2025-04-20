@@ -10,7 +10,6 @@
     <!-- BS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
     <!--estilos -->
     <link rel="stylesheet" href="styles/style.css">
     <title>Indumentaria Romina Escobar</title>
@@ -22,12 +21,23 @@
         <div class="linea-superior">
             <p>Envíos a todo el país a partir de $50.000</p>
         </div>
-        <header class="cabecera">
-            <!-- Menú lateral de navegación -->
-            <nav class="nav">
-                <!-- Logo -->
-                <img class="logo" src="assets/favicon.png" alt="Logo de Indumentaria Romina Escobar">
-                <ul class="nav-list">
+        <header class="cabecera d-flex justify-content-between align-items-center px-3">
+            <!-- Menú lateral de escritorio (≥992px) -->
+            <nav class="nav d-none d-lg-flex">
+              <img class="logo" src="assets/favicon.png" alt="Logo de Indumentaria Romina Escobar">
+              <ul class="nav-list">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="./pages/productos.html">Productos</a></li>
+                <li><a href="./pages/contacto.html">Contacto</a></li>
+                <li><a href="./pages/preguntas-frecuentes.html">FAQ</a></li>
+                <li><a href="./pages/cambios.html">Cambios</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+              </ul>
+            </nav>
+
+            <!-- Menú horizontal (visible solo en tablet) -->
+            <nav class="nav-horizontal d-none d-sm-flex d-lg-none w-100 justify-content-center">
+                <ul class="nav-list d-flex gap-3 list-unstyled m-0">
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="./pages/productos.html">Productos</a></li>
                     <li><a href="./pages/contacto.html">Contacto</a></li>
@@ -36,7 +46,48 @@
                     <li><a href="#testimonios">Testimonios</a></li>
                 </ul>
             </nav>
+          
+            <!-- Botón hamburguesa (solo visible en móvil) -->
+            <button
+                class="btn-hamburguesa d-block d-sm-none ms-auto"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#mobileNav"
+                aria-controls="mobileNav"
+                aria-label="Mostrar menú"
+                >
+                <i class="bi bi-list"></i>
+            </button>
+            <!-- Menú móvil (offcanvas) -->
+            <section
+              id="mobileNav"
+              class="offcanvas offcanvas-end d-block d-sm-none"
+              tabindex="-1"
+              aria-label="Menú móvil"
+              role="navigation"
+            >
+              <article class="offcanvas-header justify-content-end">
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Cerrar menú"
+                ></button>
+              </article>
+          
+              <article class="offcanvas-body p-0">
+                <ul class="nav-list flex-column text-center my-4">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="./pages/productos.html">Productos</a></li>
+                    <li><a href="./pages/contacto.html">Contacto</a></li>
+                    <li><a href="./pages/preguntas-frecuentes.html">FAQ</a></li>
+                    <li><a href="./pages/cambios.html">Cambios</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                </ul>
+              </article>
+            </section>
         </header>
+          
         <!-- Contenedor para el resto del contenido -->
         <main class="main-content">
             <button class="search-button" aria-label="Buscar">
@@ -111,7 +162,6 @@
                     </button>
                 </section>
             </section>
-        
             <section class="productos-destacados d-block d-lg-none">
                 <!-- Título de la sección -->
                 <h2 class="text-center mb-3">Productos Destacados</h2>
@@ -170,8 +220,6 @@
                   </button>
                 </div>
             </section>
-              
-            
             <!-- Testimonios -->
             <section id="testimonios" class="testimonios d-none d-lg-flex">
                 <h2>Testimonios</h2>
@@ -191,7 +239,7 @@
                 </article>
             </section>
             <!-- SOLO EN VISTA tablet -->
-            <section id="testimoniosTablet" class="d-none d-md-block d-lg-none py-4">
+            <section id="testimoniosTablet" class=" d-md-block d-lg-none py-4">
                 <h2 class="text-center mb-4">Testimonios</h2>
             
                 <div id="carouselTestimoniosTablet" class="carousel slide" data-bs-ride="carousel">
@@ -231,7 +279,6 @@
                     </article>
             
                 </div>
-            
                 <!-- Controles del carrusel -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselTestimoniosTablet" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -242,10 +289,7 @@
                     <span class="visually-hidden">Siguiente</span>
                 </button>
                 </div>
-            </section>
-  
-  
-              
+            </section> 
         </main>    
         <!-- Footer -->
         <footer class="pie">

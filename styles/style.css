@@ -95,6 +95,7 @@ a {
 .banner {
     grid-area: main;
     height: 380px; /* Ajusta la altura para que sea más rectangular */
+    width: 100%;
     background-image: url(../assets/local.jpeg);
     background-size: cover;
     object-position: top; /* Muestra la parte superior en vez del centro */
@@ -355,9 +356,8 @@ form input[type="submit"] {
     color: #555;
 }
 
-
 /*table*/
-@media (max-width: 768px) {
+@media (max-width: 991px) {
     .grid-container {
         display: grid;
         grid-template-columns: 1fr;
@@ -375,7 +375,8 @@ form input[type="submit"] {
     }
     
     .banner {
-        grid-area: heqder;
+        grid-area: main;
+        width:100%;
     }
 
     .cabecera {
@@ -429,17 +430,17 @@ form input[type="submit"] {
     }
 
     .categoria-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      width: auto;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.6);
-      color: rgb(219, 74, 123);
-      border-radius: 5px;
-      font-size: 16px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        width: auto;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.6);
+        color: rgb(219, 74, 123);
+        border-radius: 5px;
+        font-size: 16px;
     }
 
     .productos {
@@ -452,17 +453,11 @@ form input[type="submit"] {
         object-fit: cover; /* Para que la imagen se recorte adecuadamente sin distorsionarse */
     }
 
-    .banner {
-        grid-area: main;
-        width:768px;
-    }
-
     .pie {
         grid-area: foo;
     }
 
     #contacto {
-       
         grid-template-columns: 1fr; /* Solo una columna */
       }
     
@@ -483,6 +478,60 @@ form input[type="submit"] {
 }
 
 /*mobile*/
-@media (max-width: 480px) {
+@media (max-width: 575px) {
+    .cabecera {
+        background-color: black; /* Establece un fondo negro para toda la cabecera */
+    }
+        
+    .btn-hamburguesa {
+        background-color: #000 !important;
+        color: #fff !important;
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
+    }
+    
+    .btn-hamburguesa i {
+        font-size: 1.5rem;
+        color: #fff !important;
+    }
+
+    .offcanvas-end {
+        width: 100% !important;
+    }
+
+    #mobileNav {
+        background-color: #030000 !important; /* fondo negro como desktop */
+        color: white;
+    }
+
+    #mobileNav .offcanvas-body {
+        padding: 0;
+    }
+
+    #mobileNav .nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        margin: 0;
+        gap: 1rem;
+    }
+
+    #mobileNav .nav-list li {
+        margin: 0;
+    }
+
+    #mobileNav .nav-list li a {
+        text-decoration: none;
+        color: rgb(219, 74, 123);
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .btn-close {
+        filter: invert(1); /* botón de cerrar en blanco */
+    }
+
     
 }
