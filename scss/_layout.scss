@@ -1,0 +1,58 @@
+@use 'variables';
+
+/*grid container*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 200px 2fr; /* Menú lateral 250px, resto del contenido flexible */
+    grid-template-rows: 40px 1fr auto auto; /* Fila superior automática, contenido principal flexible y footer automático */
+    grid-template-areas: 
+        "linea-superior linea-superior"
+        "header main"
+        "nav main"
+        "nav foo";
+}
+
+/* Estilo para la línea superior */
+.linea-superior {
+    grid-area: linea-superior;
+    background-color: variables.$rosa-principal; /* Color de fondo de la línea superior */
+    color: variables.$blanco; /* Color del texto */
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+/* header */
+.cabecera {
+    grid-area: header;
+    width: 100%;
+    background-color: variables.$negro;
+    color: variables.$rosa-principal; /* Color del texto */
+    padding: 20px 0; /* Espacio alrededor del texto */
+}
+
+/* main - banner */
+.banner {
+    grid-area: main;
+    height: 380px; /* Ajusta la altura para que sea más rectangular */
+    width: 100%;
+    background-image: url(../assets/local.jpeg);
+    background-size: cover;
+    background-position: center;
+}
+
+/* footer */
+.pie {
+    grid-area: foo;
+    background-color: variables.$negro;
+    color: variables.$blanco;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.derechos-de-autor {
+    p {
+        font-size: 0.9rem;
+    }
+}

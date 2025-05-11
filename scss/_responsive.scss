@@ -1,0 +1,181 @@
+@use 'variables';
+
+/*table*/
+@media (max-width: 991px) {
+    .grid-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 4fr auto auto; /* Fila superior automática, contenido principal flexible y footer automático */
+        grid-template-areas: 
+            "linea-superior"
+            "nav"
+            "header"
+            "main"
+            "foo";
+    }
+
+    .linea-superior{
+        grid-area: linea-superior;
+    }
+    
+    .banner {
+        grid-area: main;
+        width:auto;
+    }
+
+    .cabecera {
+        grid-area: nav;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+    }
+
+    .nav {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 10px;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        gap: 20px;
+        
+        a {
+            text-decoration: none;
+            color: variables.$rosa-principal; 
+        }
+    }
+
+    .container-categorias {
+        display: block;
+        margin: 0;
+        padding: 10px;
+    
+        .categoria {
+          display: block;
+          width: 100%;
+    
+          .categoria-box {
+            width: 100%;
+            height: 150px;     // altura rectangular “menos alto”
+            margin-bottom: 20px;
+    
+            img {
+              display: block;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+    
+            .categoria-text {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              text-align: center;
+              padding: 10px;
+              background-color: rgba(0, 0, 0, 0.6);
+              color: rgb(219, 74, 123);
+              border-radius: 5px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+    
+    .productos {
+        flex-direction: column;
+    }
+    
+    /* Reglas específicas del carrusel dentro de productos */
+    #carouselProductos .carousel-item img {
+        height: min(500px, 50vh);
+        object-fit: cover;
+    }
+
+    .pie {
+        grid-area: foo;
+    }
+
+    #contacto {
+        grid-template-columns: 1fr; /* Solo una columna */
+    }
+    
+    .contacto-contenedor {
+        grid-template-columns: 1fr; /* También en una sola columna */
+    }
+    
+    .formulario {
+        grid-column: span 1; /* Ya no necesita ocupar 2 columnas */
+    }
+
+    .mapa {
+        iframe {
+            width: 100%;
+            height: 300px;
+            display: block;
+        }
+    }
+}
+
+/*mobile*/
+@media (max-width: 575px) {
+    .cabecera {
+        background-color: black; /* Establece un fondo negro para toda la cabecera */
+    }
+        
+    .btn-hamburguesa {
+        background-color: #000 !important;
+        color: #fff !important;
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
+    }
+    
+    .btn-hamburguesa i {
+        font-size: 1.5rem;
+        color: #fff !important;
+    }
+
+    .offcanvas-end {
+        width: 100% !important;
+    }
+
+    #mobileNav {
+        background-color: #030000 !important; /* fondo negro como desktop */
+        color: white;
+    }
+
+    #mobileNav .offcanvas-body {
+        padding: 0;
+    }
+
+    #mobileNav .nav-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        margin: 0;
+        gap: 1rem;
+        list-style: none;
+    }
+
+    #mobileNav .nav-list li {
+        margin: 0;
+    }
+
+    #mobileNav .nav-list li a {
+        text-decoration: none;
+        color: rgb(219, 74, 123);
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .btn-close {
+        filter: invert(1); /* botón de cerrar en blanco */
+    }
+}

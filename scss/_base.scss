@@ -1,0 +1,25 @@
+@use 'variables';
+
+/*Reset del CSS*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: variables.$fuente-principal;
+}
+
+h2 {
+  font-family: variables.$fuente-secundaria;
+}
+
+a {
+  text-decoration: none;
+  color: variables.$negro;
+}
+
+.search-button {
+  background-color: transparent; /* Fondo transparente */
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
