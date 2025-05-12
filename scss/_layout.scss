@@ -1,4 +1,5 @@
 @use 'variables';
+@use 'mixins';
 
 /*grid container*/
 .grid-container {
@@ -20,6 +21,14 @@
     text-align: center;
     padding: 10px 0;
     font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    p {
+        display: inline-flex;               // alinea el texto duplicado en línea
+        transform: translateX(50%);         // posición inicial fuera a la derecha
+        @include mixins.infinite-scroll(8s); // anima de 50% → -50%
+        padding-right: 10rem;               // espacio entre repeticiones
+      }
 }
 
 /* header */

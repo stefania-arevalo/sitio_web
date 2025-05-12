@@ -1,4 +1,12 @@
 @charset "UTF-8";
+@keyframes scroll-horizontal {
+  0% {
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 /*Reset del CSS*/
 * {
   margin: 0;
@@ -39,6 +47,14 @@ a {
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.linea-superior p {
+  display: inline-flex;
+  transform: translateX(50%);
+  animation: scroll-horizontal 8s linear infinite;
+  padding-right: 10rem;
 }
 
 /* header */
@@ -118,6 +134,12 @@ a {
   margin-bottom: 20px; /* Agrega espacio debajo del logo */
 }
 
+.box-estilizado, .faq-container .faq, .testimonios .testimonio, .productos-container .productos .producto {
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* Categorías y Productos */
 .container-categorias {
   display: flex;
@@ -179,11 +201,8 @@ a {
 }
 .productos-container .productos .producto {
   width: 180px;
-  background-color: #f8f8f8;
-  border-radius: 10px;
   overflow: hidden;
   text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   text-decoration: none; /* Quita el subrayado del enlace */
 }
 .productos-container .productos .producto img {
@@ -225,11 +244,8 @@ a {
 .testimonios .testimonio {
   display: flex;
   align-items: center;
-  background: #ffd6d6;
   padding: 1rem;
-  border-radius: 10px;
   max-width: 500px;
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 .testimonios .testimonio img {
   width: 60px;
@@ -357,10 +373,7 @@ a {
   margin: 20px;
 }
 .faq-container .faq {
-  background-color: #f8f8f8;
   padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 .faq-container .faq-section h2 {
   font-size: 2rem;

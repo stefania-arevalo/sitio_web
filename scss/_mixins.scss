@@ -1,0 +1,12 @@
+@use 'variables';
+
+// Keyframes y mixin de scroll infinito continuo
+@keyframes scroll-horizontal {
+    0%   { transform: translateX(50%); }   // empieza con la mitad del ancho a la derecha
+    100% { transform: translateX(-50%); }  // termina con la mitad del ancho a la izquierda
+  }
+  
+// Mixin de scroll infinito
+@mixin infinite-scroll($duration: 10s) {
+    animation: scroll-horizontal $duration linear infinite;
+}
