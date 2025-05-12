@@ -16,8 +16,6 @@
   gap: 20px; /* Espacio entre elementos */
   padding: 20px;
   
-
- 
   .categoria {
     grid-area: main;
     display: flex;
@@ -29,8 +27,8 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      width: 330px;
-      height: 380px;
+      width: 390px;
+      height: 420px;
       gap: 10px; /* Espacio entre cuadros */
       transition: transform 0.3s ease; 
 
@@ -73,8 +71,8 @@
 
   .productos {
     display: flex;
-    gap: 20px; 
-
+    gap: 20px;
+   
     .producto {
       width: 180px;  
       @extend .box-estilizado;
