@@ -1,7 +1,7 @@
 @use 'variables';
 
 
-.box-estilizado {
+%box-estilizado {
   background-color: #f8f8f8;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -72,10 +72,11 @@
   .productos {
     display: flex;
     gap: 20px;
+
    
     .producto {
       width: 180px;  
-      @extend .box-estilizado;
+      @extend %box-estilizado;
       overflow: hidden;
       text-align: center;
       text-decoration: none;
@@ -130,7 +131,7 @@
   .testimonio {
     display: flex;
     align-items: center;
-    @extend .box-estilizado;
+    @extend %box-estilizado;
     padding: 1rem;
     max-width: 500px;
   
@@ -284,7 +285,7 @@
   margin: 20px;
 
   .faq {
-    @extend .box-estilizado;  
+    @extend %box-estilizado;  
     padding: 15px;
     
     &-section {
