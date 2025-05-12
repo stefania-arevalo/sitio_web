@@ -164,7 +164,7 @@ a {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  width: 360px;
+  width: 320px;
   height: 390px;
   gap: 10px; /* Espacio entre cuadros */
   transition: transform 0.3s ease;
