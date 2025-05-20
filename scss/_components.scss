@@ -27,8 +27,8 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      width: 320px;
-      height: 390px;
+      width: 370px;
+      height: 400px;
       gap: 10px; /* Espacio entre cuadros */
       transition: transform 0.3s ease; 
 
@@ -72,10 +72,9 @@
   .productos {
     display: flex;
     gap: 20px;
-
    
     .producto {
-      width: 180px;  
+      width: 230px;  
       @extend %box-estilizado;
       overflow: hidden;
       text-align: center;
@@ -91,6 +90,7 @@
         width: 200px;
         height: 250px;
         object-fit: cover;
+        padding: 10px;
       }
 
       .info-producto {
@@ -110,15 +110,30 @@
       }
     }
 
-    .btn-flecha {
-      &:hover {
-        opacity: 1;
-      }
-      &.izquierda { left: -20px; }
-      &.derecha  { right: -20px; }
-    }
   }
 }
+
+.btn-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.izquierda {
+    left: 50px;
+  }
+
+  &.derecha {
+    right: 50px;
+  }
+}
+
 
 /* Testimonios */
 .testimonios {
@@ -170,10 +185,13 @@
   }
 }
 
-/* Tarjetas */
+/* Productos Página */
 .card {
   border: none;
   border-radius: 1rem;
+  padding: 10px;
+  width: 400px;
+  height: 520px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 
@@ -181,10 +199,11 @@
     transform: scale(1.02);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   }
-
+  
   .card-img-top {
+    padding: 15px;
     object-fit: cover;
-    height: 300px; /* ajustá esto según la proporción de tus imágenes */
+    height: 360px;
   }
 
   .color-options {

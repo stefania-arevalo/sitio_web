@@ -164,8 +164,8 @@ a {
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  width: 320px;
-  height: 390px;
+  width: 370px;
+  height: 400px;
   gap: 10px; /* Espacio entre cuadros */
   transition: transform 0.3s ease;
 }
@@ -206,7 +206,7 @@ a {
   gap: 20px;
 }
 .productos-container .productos .producto {
-  width: 180px;
+  width: 230px;
   overflow: hidden;
   text-align: center;
   text-decoration: none;
@@ -220,6 +220,7 @@ a {
   width: 200px;
   height: 250px;
   object-fit: cover;
+  padding: 10px;
 }
 .productos-container .productos .producto .info-producto {
   padding: 10px;
@@ -234,14 +235,24 @@ a {
   font-size: 18px;
   font-weight: bold;
 }
-.productos-container .productos .btn-flecha:hover {
-  opacity: 1;
+
+.btn-flecha {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.productos-container .productos .btn-flecha.izquierda {
-  left: -20px;
+.btn-flecha.izquierda {
+  left: 50px;
 }
-.productos-container .productos .btn-flecha.derecha {
-  right: -20px;
+.btn-flecha.derecha {
+  right: 50px;
 }
 
 /* Testimonios */
@@ -284,10 +295,13 @@ a {
   color: #ffd6d6;
 }
 
-/* Tarjetas */
+/* Productos Página */
 .card {
   border: none;
   border-radius: 1rem;
+  padding: 10px;
+  width: 400px;
+  height: 520px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -296,8 +310,9 @@ a {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .card .card-img-top {
+  padding: 15px;
   object-fit: cover;
-  height: 300px; /* ajustá esto según la proporción de tus imágenes */
+  height: 360px;
 }
 .card .color-options .color-circle {
   width: 20px;
