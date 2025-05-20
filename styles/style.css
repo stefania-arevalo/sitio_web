@@ -470,6 +470,64 @@ a {
   color: #555;
 }
 
+@media (min-width: 992px) {
+  .container-categorias {
+    display: flex;
+    flex-wrap: wrap; /* permite wrap cuando falta espacio */
+    gap: 20px;
+    padding: 20px;
+  }
+  .container-categorias .categoria {
+    flex: 1 1 calc((100% - 40px) / 3);
+    min-width: calc((100% - 40px) / 4); /* para que no se hagan demasiado pequeñas */
+    max-width: calc((100% - 40px) / 3);
+  }
+  .container-categorias .categoria-box {
+    width: 100%;
+    aspect-ratio: 370/400;
+    overflow: hidden;
+  }
+  .container-categorias .categoria-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .productos-container {
+    position: relative;
+    padding: 0 60px;
+    /* Flechas siempre fuera de las cajas, sin superponerlas */
+  }
+  .productos-container .productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .productos-container .producto {
+    flex: 1 1 calc((100% - 60px - 120px) / 4);
+    min-width: 0;
+    max-width: calc((100% - 60px) / 4);
+  }
+  .productos-container .producto img {
+    width: 100%;
+    height: auto;
+  }
+  .productos-container .btn-flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+  }
+  .productos-container .btn-flecha.izquierda {
+    left: 10px;
+  }
+  .productos-container .btn-flecha.derecha {
+    right: 5px;
+  }
+}
 /*table*/
 @media (max-width: 991px) {
   .grid-container {

@@ -1,5 +1,75 @@
 @use 'variables';
 
+@media (min-width: 992px) {
+    .container-categorias {
+        display: flex;
+        flex-wrap: wrap;               /* permite wrap cuando falta espacio */
+        gap: 20px;
+        padding: 20px;
+        
+        .categoria {
+            flex: 1 1 calc((100% - 2 * 20px) / 3);
+            min-width: calc((100% - 2 * 20px) / 4); /* para que no se hagan demasiado pequeñas */
+            max-width: calc((100% - 2 * 20px) / 3);
+        }
+
+        .categoria-box {
+            width: 100%;
+            aspect-ratio: 370 / 400;
+            overflow: hidden;
+        }
+
+        .categoria-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .productos-container {
+        position: relative;
+        padding: 0 60px;        // espacio para las flechas
+    
+
+        .productos {
+            display: flex;
+            flex-wrap: wrap;        // permite varias filas si no alcanzan
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .producto {
+            flex: 1 1 calc((100% - (20px * 3) - (60px * 2)) / 4);
+            min-width: 0;                              
+            max-width: calc((100% - (20px * 3)) / 4);
+        }
+
+        .producto img {
+            width: 100%;
+            height: auto;
+        }
+    
+        /* Flechas siempre fuera de las cajas, sin superponerlas */
+        .btn-flecha {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            z-index: 2;
+          }
+        .btn-flecha.izquierda {
+            left: 10px;                // dentro de los 60px de padding
+        }
+        .btn-flecha.derecha {
+            right: 5px;
+        }
+        
+        }
+
+}
+
 /*table*/
 @media (max-width: 991px) {
     .grid-container {
