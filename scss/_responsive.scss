@@ -29,12 +29,11 @@
 
     .productos-container {
         position: relative;
-        padding: 0 60px;        // espacio para las flechas
-    
+        padding: 0 60px;       
 
         .productos {
             display: flex;
-            flex-wrap: wrap;        // permite varias filas si no alcanzan
+            flex-wrap: wrap;        
             gap: 20px;
             justify-content: center;
         }
@@ -60,7 +59,7 @@
             z-index: 2;
           }
         .btn-flecha.izquierda {
-            left: 10px;                // dentro de los 60px de padding
+            left: 10px;               
         }
         .btn-flecha.derecha {
             right: 5px;
