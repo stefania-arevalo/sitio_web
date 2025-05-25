@@ -15,7 +15,7 @@
   font-family: "Nunito", sans-serif;
 }
 
-h2 {
+h1 {
   font-family: "Times New Roman", Times, serif;
 }
 
@@ -71,7 +71,7 @@ a {
   grid-area: main;
   height: 380px; /* Ajusta la altura para que sea más rectangular */
   width: 100%;
-  background-image: url(../assets/local.jpeg);
+  background-image: url(../assets/local.webp);
   background-size: cover;
   background-position: center;
 }
@@ -279,7 +279,7 @@ a {
   font-size: 14px;
   color: #333;
 }
-.testimonios .testimonio .texto h4 {
+.testimonios .testimonio .texto h2 {
   margin-top: 0.5rem;
   font-size: 16px;
   font-weight: bold;
@@ -401,7 +401,7 @@ a {
 .faq-container .faq {
   padding: 15px;
 }
-.faq-container .faq-section h2 {
+.faq-container .faq-section h1 {
   font-size: 2rem;
   color: #000;
   text-align: center;
@@ -449,7 +449,7 @@ a {
   background-color: #fff;
   border-radius: 10px;
 }
-#politica-devolucion h2 {
+#politica-devolucion h1 {
   font-size: 1.8rem;
   color: #030000;
   margin-bottom: 15px;
