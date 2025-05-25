@@ -42,8 +42,8 @@ a {
 /* Estilo para la línea superior */
 .linea-superior {
   grid-area: linea-superior;
-  background-color: #fe78c4; /* Color de fondo de la línea superior */
-  color: #ffffff; /* Color del texto */
+  background-color: #f8f8f8; /* Color de fondo de la línea superior */
+  color: #030000; /* Color del texto */
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
