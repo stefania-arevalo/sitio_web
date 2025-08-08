@@ -24,11 +24,37 @@ a {
   color: #030000;
 }
 
+.busqueda-carrito {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
 .search-button {
-  background-color: transparent; /* Fondo transparente */
+  background: transparent;
   border: none;
-  padding: 5px;
   cursor: pointer;
+  padding: 5px;
+}
+
+.carrito-container {
+  position: relative;
+  cursor: pointer;
+  padding: 15px;
+}
+
+#contadorCarrito {
+  position: absolute;
+  top: 2px; /* ajusta este valor para que quede justo arriba */
+  left: 50%; /* centro horizontal */
+  transform: translateX(-50%); /* centrado exacto horizontal */
+  font-size: 0.75rem;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*grid container*/

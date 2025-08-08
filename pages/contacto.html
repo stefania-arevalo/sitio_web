@@ -90,9 +90,15 @@
         </header>
         <!-- Contenedor para el resto del contenido -->
         <main class="main-content">
-            <button class="search-button" aria-label="Buscar">
-                <img src="../assets/search-icon.png" alt="Ícono de búsqueda" width="30" height="30">
-            </button>
+            <section class="busqueda-carrito">
+                <button class="search-button" aria-label="Buscar">
+                  <img src="../assets/search-icon.png" alt="Ícono de búsqueda" width="30" height="30">
+                </button>
+                <article class="carrito-container">
+                  <i class="bi bi-cart4 fs-3" id="iconoCarrito" role="button"></i>
+                  <span id="contadorCarrito" class="badge bg-danger rounded-pill">0</span>
+                </article>
+            </section>
             <section id="contacto">
                 <h2>Contacto</h2>
                 <div class="contacto-contenedor">
