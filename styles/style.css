@@ -341,12 +341,21 @@ a {
   height: 360px;
 }
 .card .color-options .color-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
   display: inline-block;
-  border: 2px solid #fff;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 0 4px;
+  border: none;
+  transition: outline 0.3s ease;
+}
+.card .color-options .color-circle.selected {
+  outline: 3px solid #ff69b4;
+  outline-offset: 2px;
+}
+.card .color-options .color-circle.selectable:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 .card .card-title {
   font-family: "Nunito", sans-serif;
@@ -367,6 +376,36 @@ a {
 }
 .card .btn-primary:hover {
   background-color: #fe78c4;
+}
+
+.modal {
+  display: none; /* oculto por defecto */
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 /* Contacto */
