@@ -24,6 +24,7 @@ class Producto {
 let productos = [];
 let carrito = [];
 
+
 // Cargar productos base con imagen y colores
 function cargarProductosBase() {
   productos = [
@@ -32,13 +33,13 @@ function cargarProductosBase() {
     new Producto(3, "Campera Ecocuero", "Ropa", 28000, 0, 8)
   ];
 
-  productos[0].imagen = "/sitio_web/assets/remera.webp";
+  productos[0].imagen = '/assets/remera.webp';
   productos[0].colores = ["#607d8b", "#795548"];
 
-  productos[1].imagen = "/sitio_web/assets/conjunto.webp";
+  productos[1].imagen = '/assets/conjunto.webp';
   productos[1].colores = ["#ff6384", "#000", "#fff"];
 
-  productos[2].imagen = "/sitio_web/assets/campera.webp";
+  productos[2].imagen = '/assets/campera.webp';
   productos[2].colores = ["#000", "#fff"];
 
   productos.forEach(p => p.aplicarIVA());
@@ -65,7 +66,7 @@ function crearColorCircle(color) {
   return span;
 }
 
-// Crear tarjeta producto con input cantidad y botón al lado
+// Crear tarjeta producto con input cantidad y botón
 function crearTarjetaProducto(prod) {
   const article = document.createElement("article");
   article.className = "col-12 col-sm-6 col-lg-4 mb-3";
@@ -73,13 +74,11 @@ function crearTarjetaProducto(prod) {
   const card = document.createElement("section");
   card.className = "card h-100 shadow-sm d-flex flex-column";
 
-  // Imagen
   const img = document.createElement("img");
   img.src = prod.imagen;
   img.alt = prod.nombre;
   img.className = "card-img-top";
 
-  // Colores
   const coloresContainer = document.createElement("section");
   coloresContainer.className = "color-options d-flex justify-content-center gap-2 my-2";
 
@@ -89,13 +88,9 @@ function crearTarjetaProducto(prod) {
     const colorSpan = crearColorCircle(color);
 
     colorSpan.addEventListener("click", () => {
-      // Deseleccionar todos los colores
       coloresContainer.querySelectorAll(".color-circle").forEach(c => c.classList.remove("selected"));
-      // Seleccionar este
       colorSpan.classList.add("selected");
       colorSeleccionado = color;
-
-      // Ocultar mensaje error si estaba visible
       mensajeError.style.display = "none";
       mensajeStock.style.display = "none";
     });
@@ -103,7 +98,6 @@ function crearTarjetaProducto(prod) {
     coloresContainer.appendChild(colorSpan);
   });
 
-  // Cuerpo tarjeta
   const cardBody = document.createElement("section");
   cardBody.className = "card-body text-center d-flex flex-column justify-content-between flex-grow-1";
 
@@ -115,7 +109,6 @@ function crearTarjetaProducto(prod) {
   precio.className = "card-text";
   precio.textContent = `$${prod.precioFinal().toFixed(2)}`;
 
-  // Contenedor input cantidad y botón agregar
   const cantidadAgregarContainer = document.createElement("div");
   cantidadAgregarContainer.className = "d-flex justify-content-center align-items-center gap-2 mb-3";
 
@@ -133,7 +126,6 @@ function crearTarjetaProducto(prod) {
   cantidadAgregarContainer.appendChild(inputCantidad);
   cantidadAgregarContainer.appendChild(btnAgregar);
 
-  // Mensajes de error
   const mensajeError = document.createElement("p");
   mensajeError.style.color = "red";
   mensajeError.style.fontSize = "0.9rem";
@@ -146,7 +138,6 @@ function crearTarjetaProducto(prod) {
   mensajeStock.style.display = "none";
   mensajeStock.textContent = "No hay stock suficiente para la cantidad solicitada.";
 
-  // Evento agregar al carrito
   btnAgregar.addEventListener("click", () => {
     if (!colorSeleccionado) {
       mensajeError.style.display = "block";
@@ -158,8 +149,6 @@ function crearTarjetaProducto(prod) {
       cantidad = 1;
       inputCantidad.value = "1";
     }
-    // Verificar stock disponible
-    // Cantidad ya en carrito para este producto y color
     const itemEnCarrito = carrito.find(item => item.id === prod.id && item.color === colorSeleccionado);
     const cantidadEnCarrito = itemEnCarrito ? itemEnCarrito.cantidad : 0;
     const stockDisponible = prod.stock - cantidadEnCarrito;
@@ -173,10 +162,9 @@ function crearTarjetaProducto(prod) {
     mensajeError.style.display = "none";
     mensajeStock.style.display = "none";
     agregarAlCarrito(prod.id, colorSeleccionado, cantidad);
-    inputCantidad.value = "1"; // reset cantidad
+    inputCantidad.value = "1";
   });
 
-  // Armar estructura
   cardBody.appendChild(titulo);
   cardBody.appendChild(precio);
   cardBody.appendChild(coloresContainer);
@@ -186,7 +174,6 @@ function crearTarjetaProducto(prod) {
 
   card.appendChild(img);
   card.appendChild(cardBody);
-
   article.appendChild(card);
 
   return article;
@@ -195,12 +182,8 @@ function crearTarjetaProducto(prod) {
 // Mostrar catálogo
 function mostrarCatalogo(lista) {
   const contenedor = document.getElementById("catalogo");
-  contenedor.innerHTML = ""; // Limpio contenedor
-
-  lista.forEach(prod => {
-    const tarjeta = crearTarjetaProducto(prod);
-    contenedor.appendChild(tarjeta);
-  });
+  contenedor.innerHTML = "";
+  lista.forEach(prod => contenedor.appendChild(crearTarjetaProducto(prod)));
 }
 
 // Agregar al carrito
@@ -216,15 +199,14 @@ function agregarAlCarrito(id, color, cantidad) {
   }
   guardarEnLocalStorage("carrito", carrito);
   actualizarContadorCarrito();
-  mostrarCarrito();  // Mostrar el carrito automáticamente cuando agregas
+  mostrarCarrito();
   abrirModal();
 }
 
 // Actualizar contador carrito
 function actualizarContadorCarrito() {
   const contador = document.getElementById("contadorCarrito");
-  const totalCantidad = carrito.reduce((acc, item) => acc + item.cantidad, 0);
-  contador.textContent = totalCantidad;
+  contador.textContent = carrito.reduce((acc, item) => acc + item.cantidad, 0);
 }
 
 // Mostrar carrito en modal
@@ -283,7 +265,7 @@ function mostrarMensaje(texto, tipo) {
   setTimeout(() => contenedor.innerHTML = "", 3000);
 }
 
-// Filtrar productos (BUSCADOR)
+// Filtrar productos
 function filtrarProductos(termino) {
   const resultado = productos.filter(p => p.nombre.includes(termino.toUpperCase()));
   if (resultado.length > 0) {
@@ -305,7 +287,7 @@ function cerrarModal() {
   modal.style.display = "none";
 }
 
-// Inicialización y eventos
+// Inicialización
 document.addEventListener("DOMContentLoaded", () => {
   const prodsLS = obtenerDeLocalStorage("productos");
   if (prodsLS && prodsLS.length > 0) {
@@ -334,24 +316,18 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarCatalogo(productos);
   actualizarContadorCarrito();
 
-  // Eventos modal carrito
   document.getElementById("iconoCarrito").addEventListener("click", abrirModal);
   document.getElementById("cerrarModal").addEventListener("click", cerrarModal);
 
   window.addEventListener("click", e => {
-    const modal = document.getElementById("modalCarrito");
-    if (e.target === modal) {
-      cerrarModal();
-    }
+    if (e.target === document.getElementById("modalCarrito")) cerrarModal();
   });
 
-  // Buscador con lupa
   const iconoBuscador = document.getElementById("iconoBuscador");
   const buscador = document.getElementById("buscador");
 
   if (iconoBuscador && buscador) {
     iconoBuscador.addEventListener("click", () => buscador.classList.toggle("d-none"));
-
     buscador.addEventListener("input", e => {
       const termino = e.target.value.trim();
       if (termino.length === 0) {
