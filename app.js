@@ -31,15 +31,14 @@ function cargarProductosBase() {
     new Producto(2, "Conjunto", "Ropa", 12500, 0, 5),
     new Producto(3, "Campera Ecocuero", "Ropa", 28000, 0, 8)
   ];
-  
-  const base = window.BASE || "";
-  productos[0].imagen = `${base}assets/remera.webp`;
+
+  productos[0].imagen = "../assets/remera.webp";
   productos[0].colores = ["#607d8b", "#795548"];
 
-  productos[1].imagen = `${base}assets/conjunto.webp`;
+  productos[1].imagen = "assets/conjunto.webp";
   productos[1].colores = ["#ff6384", "#000", "#fff"];
 
-  productos[2].imagen = `${base}assets/campera.webp`;
+  productos[2].imagen = "assets/campera.webp";
   productos[2].colores = ["#000", "#fff"];
 
   productos.forEach(p => p.aplicarIVA());
