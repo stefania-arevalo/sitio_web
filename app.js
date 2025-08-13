@@ -32,10 +32,7 @@ function cargarProductosBase() {
     new Producto(3, "Campera Ecocuero", "Ropa", 28000, 0, 8)
   ];
   
-  const base = (typeof window !== 'undefined' && window.BASE)
-    ? window.BASE
-    : (window.location.pathname.includes("/pages/") ? "../" : "./");
-
+  const base = window.BASE || "";
   productos[0].imagen = `${base}assets/remera.webp`;
   productos[0].colores = ["#607d8b", "#795548"];
 
