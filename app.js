@@ -1,5 +1,3 @@
-console.log("app.js cargado correctamente");
-
 // Clase Producto
 class Producto {
   constructor(id, nombre, categoria, precio, descuento = 0, stock = 0) {
