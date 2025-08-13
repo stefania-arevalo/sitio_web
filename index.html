@@ -104,9 +104,10 @@
         <!-- Contenedor para el resto del contenido -->
         <main class="main-content">
             <section class="busqueda-carrito">
-              <button class="search-button" aria-label="Buscar">
+              <button id="iconoBuscador" class="search-button" aria-label="Buscar" >
                 <img src="assets/search-icon.png" alt="Ícono de búsqueda" width="30" height="30">
               </button>
+              <input type="text" id="buscador" placeholder="Buscar producto..." class="form-control d-none">
               <article class="carrito-container">
                 <i class="bi bi-cart4 fs-3" id="iconoCarrito" role="button"></i>
                 <span id="contadorCarrito" class="badge bg-danger rounded-pill">0</span>

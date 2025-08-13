@@ -67,13 +67,13 @@ function crearColorCircle(color) {
   return span;
 }
 
-// Crear tarjeta producto 
+// Crear tarjeta producto con input cantidad y botón al lado
 function crearTarjetaProducto(prod) {
   const article = document.createElement("article");
-  article.className = "col-12 col-sm-6 col-lg-4";
+  article.className = "col-12 col-sm-6 col-lg-4 mb-3";
 
   const card = document.createElement("section");
-  card.className = "card h-100 shadow-sm";
+  card.className = "card h-100 shadow-sm d-flex flex-column";
 
   // Imagen
   const img = document.createElement("img");
@@ -96,6 +96,10 @@ function crearTarjetaProducto(prod) {
       // Seleccionar este
       colorSpan.classList.add("selected");
       colorSeleccionado = color;
+
+      // Ocultar mensaje error si estaba visible
+      mensajeError.style.display = "none";
+      mensajeStock.style.display = "none";
     });
 
     coloresContainer.appendChild(colorSpan);
@@ -103,7 +107,7 @@ function crearTarjetaProducto(prod) {
 
   // Cuerpo tarjeta
   const cardBody = document.createElement("section");
-  cardBody.className = "card-body text-center";
+  cardBody.className = "card-body text-center d-flex flex-column justify-content-between flex-grow-1";
 
   const titulo = document.createElement("h5");
   titulo.className = "card-title";
@@ -113,31 +117,76 @@ function crearTarjetaProducto(prod) {
   precio.className = "card-text";
   precio.textContent = `$${prod.precioFinal().toFixed(2)}`;
 
+  // Contenedor input cantidad y botón agregar
+  const cantidadAgregarContainer = document.createElement("div");
+  cantidadAgregarContainer.className = "d-flex justify-content-center align-items-center gap-2 mb-3";
+
+  const inputCantidad = document.createElement("input");
+  inputCantidad.type = "number";
+  inputCantidad.min = "1";
+  inputCantidad.value = "1";
+  inputCantidad.style.width = "60px";
+  inputCantidad.className = "form-control form-control-sm text-center";
+
   const btnAgregar = document.createElement("button");
   btnAgregar.className = "btn btn-primary btn-agregar";
   btnAgregar.textContent = "Agregar al carrito";
 
+  cantidadAgregarContainer.appendChild(inputCantidad);
+  cantidadAgregarContainer.appendChild(btnAgregar);
+
+  // Mensajes de error
+  const mensajeError = document.createElement("p");
+  mensajeError.style.color = "red";
+  mensajeError.style.fontSize = "0.9rem";
+  mensajeError.style.display = "none";
+  mensajeError.textContent = "Por favor, seleccioná un color antes de agregar al carrito.";
+
+  const mensajeStock = document.createElement("p");
+  mensajeStock.style.color = "red";
+  mensajeStock.style.fontSize = "0.9rem";
+  mensajeStock.style.display = "none";
+  mensajeStock.textContent = "No hay stock suficiente para la cantidad solicitada.";
+
+  // Evento agregar al carrito
   btnAgregar.addEventListener("click", () => {
     if (!colorSeleccionado) {
-      alert("Por favor, seleccioná un color antes de agregar al carrito.");
+      mensajeError.style.display = "block";
+      mensajeStock.style.display = "none";
       return;
     }
-    let cantidad = prompt("¿Cuántas unidades querés agregar?", "1");
-    cantidad = parseInt(cantidad);
+    let cantidad = parseInt(inputCantidad.value);
     if (!cantidad || cantidad < 1) {
-      alert("Cantidad inválida.");
+      cantidad = 1;
+      inputCantidad.value = "1";
+    }
+    // Verificar stock disponible
+    // Cantidad ya en carrito para este producto y color
+    const itemEnCarrito = carrito.find(item => item.id === prod.id && item.color === colorSeleccionado);
+    const cantidadEnCarrito = itemEnCarrito ? itemEnCarrito.cantidad : 0;
+    const stockDisponible = prod.stock - cantidadEnCarrito;
+
+    if (cantidad > stockDisponible) {
+      mensajeStock.style.display = "block";
+      mensajeError.style.display = "none";
       return;
     }
+
+    mensajeError.style.display = "none";
+    mensajeStock.style.display = "none";
     agregarAlCarrito(prod.id, colorSeleccionado, cantidad);
+    inputCantidad.value = "1"; // reset cantidad
   });
 
   // Armar estructura
   cardBody.appendChild(titulo);
   cardBody.appendChild(precio);
-  cardBody.appendChild(btnAgregar);
+  cardBody.appendChild(coloresContainer);
+  cardBody.appendChild(cantidadAgregarContainer);
+  cardBody.appendChild(mensajeError);
+  cardBody.appendChild(mensajeStock);
 
   card.appendChild(img);
-  card.appendChild(coloresContainer);
   card.appendChild(cardBody);
 
   article.appendChild(card);
@@ -193,7 +242,7 @@ function mostrarCarrito() {
   let total = 0;
 
   carrito.forEach((item, index) => {
-    if (!item.producto) return; // seguridad
+    if (!item.producto) return;
 
     const precioItem = item.producto.precioFinal() * item.cantidad;
     total += precioItem;
@@ -223,11 +272,27 @@ function mostrarCarrito() {
     carritoContainer.appendChild(div);
   });
 
-  // Agregar total al final
   const divTotal = document.createElement("div");
   divTotal.className = "total-carrito mt-3 text-end fw-bold fs-5";
   divTotal.textContent = `Total: $${total.toFixed(2)}`;
   carritoContainer.appendChild(divTotal);
+}
+
+// Mostrar mensaje dinámico
+function mostrarMensaje(texto, tipo) {
+  const contenedor = document.getElementById("mensaje");
+  contenedor.innerHTML = `<div class="alert alert-${tipo === "error" ? "danger" : "success"}">${texto}</div>`;
+  setTimeout(() => contenedor.innerHTML = "", 3000);
+}
+
+// Filtrar productos (BUSCADOR)
+function filtrarProductos(termino) {
+  const resultado = productos.filter(p => p.nombre.includes(termino.toUpperCase()));
+  if (resultado.length > 0) {
+    mostrarCatalogo(resultado);
+  } else {
+    mostrarMensaje("No se encontraron productos.", "error");
+  }
 }
 
 // Abrir y cerrar modal carrito
@@ -257,7 +322,6 @@ document.addEventListener("DOMContentLoaded", () => {
     guardarEnLocalStorage("productos", productos);
   }
 
-  // Cargar carrito y reconstruir la propiedad producto
   carrito = obtenerDeLocalStorage("carrito") || [];
   carrito = carrito.map(item => {
     const prod = productos.find(p => p.id === item.id);
@@ -272,17 +336,31 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarCatalogo(productos);
   actualizarContadorCarrito();
 
-  // Mostrar modal al clickear icono carrito
+  // Eventos modal carrito
   document.getElementById("iconoCarrito").addEventListener("click", abrirModal);
-
-  // Cerrar modal al clickear la X
   document.getElementById("cerrarModal").addEventListener("click", cerrarModal);
 
-  // Cerrar modal al hacer click fuera del contenido
   window.addEventListener("click", e => {
     const modal = document.getElementById("modalCarrito");
     if (e.target === modal) {
       cerrarModal();
     }
   });
+
+  // Buscador con lupa
+  const iconoBuscador = document.getElementById("iconoBuscador");
+  const buscador = document.getElementById("buscador");
+
+  if (iconoBuscador && buscador) {
+    iconoBuscador.addEventListener("click", () => buscador.classList.toggle("d-none"));
+
+    buscador.addEventListener("input", e => {
+      const termino = e.target.value.trim();
+      if (termino.length === 0) {
+        mostrarCatalogo(productos);
+      } else {
+        filtrarProductos(termino);
+      }
+    });
+  }
 });
