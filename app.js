@@ -24,7 +24,6 @@ class Producto {
 let productos = [];
 let carrito = [];
 
-
 // Cargar productos base con imagen y colores
 function cargarProductosBase() {
   productos = [
@@ -33,6 +32,7 @@ function cargarProductosBase() {
     new Producto(3, "Campera Ecocuero", "Ropa", 28000, 0, 8)
   ];
 
+  // Rutas correctas para public/assets/
   productos[0].imagen = '/assets/remera.webp';
   productos[0].colores = ["#607d8b", "#795548"];
 
@@ -63,6 +63,10 @@ function crearColorCircle(color) {
     span.style.border = "1px solid #ccc";
   }
   span.style.cursor = "pointer";
+  span.style.display = "inline-block";
+  span.style.width = "20px";
+  span.style.height = "20px";
+  span.style.borderRadius = "50%";
   return span;
 }
 
@@ -206,7 +210,9 @@ function agregarAlCarrito(id, color, cantidad) {
 // Actualizar contador carrito
 function actualizarContadorCarrito() {
   const contador = document.getElementById("contadorCarrito");
-  contador.textContent = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  if (contador) {
+    contador.textContent = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+  }
 }
 
 // Mostrar carrito en modal
@@ -258,35 +264,6 @@ function mostrarCarrito() {
   carritoContainer.appendChild(divTotal);
 }
 
-// Mostrar mensaje dinámico
-function mostrarMensaje(texto, tipo) {
-  const contenedor = document.getElementById("mensaje");
-  contenedor.innerHTML = `<div class="alert alert-${tipo === "error" ? "danger" : "success"}">${texto}</div>`;
-  setTimeout(() => contenedor.innerHTML = "", 3000);
-}
-
-// Filtrar productos
-function filtrarProductos(termino) {
-  const resultado = productos.filter(p => p.nombre.includes(termino.toUpperCase()));
-  if (resultado.length > 0) {
-    mostrarCatalogo(resultado);
-  } else {
-    mostrarMensaje("No se encontraron productos.", "error");
-  }
-}
-
-// Abrir y cerrar modal carrito
-function abrirModal() {
-  const modal = document.getElementById("modalCarrito");
-  modal.style.display = "block";
-  mostrarCarrito();
-}
-
-function cerrarModal() {
-  const modal = document.getElementById("modalCarrito");
-  modal.style.display = "none";
-}
-
 // Inicialización
 document.addEventListener("DOMContentLoaded", () => {
   const prodsLS = obtenerDeLocalStorage("productos");
@@ -316,8 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
   mostrarCatalogo(productos);
   actualizarContadorCarrito();
 
-  document.getElementById("iconoCarrito").addEventListener("click", abrirModal);
-  document.getElementById("cerrarModal").addEventListener("click", cerrarModal);
+  const iconoCarrito = document.getElementById("iconoCarrito");
+  const cerrarBtn = document.getElementById("cerrarModal");
+
+  if (iconoCarrito) iconoCarrito.addEventListener("click", abrirModal);
+  if (cerrarBtn) cerrarBtn.addEventListener("click", cerrarModal);
 
   window.addEventListener("click", e => {
     if (e.target === document.getElementById("modalCarrito")) cerrarModal();
@@ -338,3 +318,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
+// Abrir y cerrar modal carrito
+function abrirModal() {
+  const modal = document.getElementById("modalCarrito");
+  if (modal) modal.style.display = "block";
+  mostrarCarrito();
+}
+
+function cerrarModal() {
+  const modal = document.getElementById("modalCarrito");
+  if (modal) modal.style.display = "none";
+}

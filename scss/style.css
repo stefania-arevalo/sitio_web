@@ -337,10 +337,11 @@ a {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 .card .card-img-top {
+  width: 100%;
+  height: auto;
   padding: 15px;
   -o-object-fit: cover;
      object-fit: cover;
-  height: 360px;
 }
 .card .color-options .color-circle {
   display: inline-block;
