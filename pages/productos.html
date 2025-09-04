@@ -96,6 +96,20 @@
                   <img src="../assets/search-icon.png" alt="Ícono de búsqueda" width="30" height="30">
                 </button>
                 <input type="text" id="buscador" placeholder="Buscar producto..." class="form-control d-none">
+                <article class="container my-4 d-flex gap-3 flex-wrap">
+                  <select id="filtroCategoria" class="form-select w-auto">
+                    <option value="todos">Todas las categorías</option>
+                    <option value="ROPA">Ropa</option>
+                    <option value="CALZADO">Calzado</option>
+                    <option value="ACCESORIOS">Accesorios</option>
+                  </select>
+                
+                  <select id="ordenPrecio" class="form-select w-auto">
+                    <option value="default">Ordenar por</option>
+                    <option value="asc">Precio: menor a mayor</option>
+                    <option value="desc">Precio: mayor a menor</option>
+                  </select>
+              </article>
                 <article class="carrito-container">
                   <i class="bi bi-cart4 fs-3" id="iconoCarrito" role="button"></i>
                   <span id="contadorCarrito" class="badge bg-danger rounded-pill">0</span>

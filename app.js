@@ -183,6 +183,34 @@ function mostrarCatalogo(lista) {
   });
 }
 
+//FILTROS Y ORDEN
+const filtroCategoria = document.getElementById("filtroCategoria");
+const ordenPrecio = document.getElementById("ordenPrecio");
+
+function aplicarFiltros() {
+  let lista = [...productos];
+
+  // Filtro categoría
+  if (filtroCategoria && filtroCategoria.value !== "todos") {
+    lista = lista.filter(p => p.categoria === filtroCategoria.value);
+  }
+
+  // Orden por precio
+  if (ordenPrecio) {
+    if (ordenPrecio.value === "asc") {
+      lista.sort((a, b) => a.precioFinal() - b.precioFinal());
+    } else if (ordenPrecio.value === "desc") {
+      lista.sort((a, b) => b.precioFinal() - a.precioFinal());
+    }
+  }
+
+  mostrarCatalogo(lista);
+}
+
+if (filtroCategoria) filtroCategoria.addEventListener("change", aplicarFiltros);
+if (ordenPrecio) ordenPrecio.addEventListener("change", aplicarFiltros);
+
+
 // Agregar al carrito
 function agregarAlCarrito(id, color, cantidad) {
   const prod = productos.find(p => p.id === id);
@@ -226,41 +254,77 @@ function mostrarCarrito() {
 
   let total = 0;
 
+  
   carrito.forEach((item, index) => {
     if (!item.producto) return;
-
+  
     const precioItem = item.producto.precioFinal() * item.cantidad;
     total += precioItem;
-
+  
     const div = document.createElement("div");
     div.className = "carrito-item d-flex justify-content-between align-items-center border-bottom py-2";
-
+  
     div.innerHTML = `
       <div>
         <strong>${item.producto.nombre}</strong> - Color: 
-        <span class="color-circle" style="background-color:${item.color}; border:1px solid #ccc; display:inline-block; width:15px; height:15px; vertical-align:middle; margin-left:5px;"></span> - 
-        Cantidad: ${item.cantidad}
+        <span class="color-circle" style="background-color:${item.color}; border:1px solid #ccc; display:inline-block; width:15px; height:15px; vertical-align:middle; margin-left:5px;"></span>
       </div>
-      <div>
-        <span>Precio: $${precioItem.toFixed(2)}</span>
-        <button class="btn btn-sm btn-danger ms-3">Eliminar</button>
+      <div class="d-flex align-items-center gap-2">
+        <input type="number" min="1" value="${item.cantidad}" class="form-control form-control-sm cantidad-input" style="width:60px;">
+        <span>$${precioItem.toFixed(2)}</span>
+        <button class="btn btn-sm btn-danger">Eliminar</button>
       </div>
     `;
-
+  
+    // Modificar cantidad
+    div.querySelector(".cantidad-input").addEventListener("change", (e) => {
+      let nuevaCantidad = parseInt(e.target.value);
+      if (isNaN(nuevaCantidad) || nuevaCantidad < 1) nuevaCantidad = 1;
+      carrito[index].cantidad = nuevaCantidad;
+      guardarEnLocalStorage("carrito", carrito);
+      mostrarCarrito();
+      actualizarContadorCarrito();
+    });
+  
+    // Eliminar
     div.querySelector("button").addEventListener("click", () => {
       carrito.splice(index, 1);
       guardarEnLocalStorage("carrito", carrito);
       actualizarContadorCarrito();
       mostrarCarrito();
     });
-
+  
     carritoContainer.appendChild(div);
   });
+  
+  // Contenedor total + botón vaciar
+  const divAcciones = document.createElement("div");
+  divAcciones.className = "d-flex justify-content-between align-items-center mt-3";
 
+  // Botón vaciar (más chico y a la izquierda)
+  const btnVaciar = document.createElement("button");
+  btnVaciar.className = "btn btn-sm btn-danger"; // más chico
+  btnVaciar.textContent = "Vaciar carrito";
+  btnVaciar.addEventListener("click", () => {
+    carrito = [];
+    guardarEnLocalStorage("carrito", carrito);
+    actualizarContadorCarrito();
+    mostrarCarrito();
+  });
+
+  // Total (a la derecha)
   const divTotal = document.createElement("div");
-  divTotal.className = "total-carrito mt-3 text-end fw-bold fs-5";
+  divTotal.className = "fw-bold fs-5";
   divTotal.textContent = `Total: $${total.toFixed(2)}`;
-  carritoContainer.appendChild(divTotal);
+
+  // Agregar ambos al contenedor
+  divAcciones.appendChild(btnVaciar);
+  divAcciones.appendChild(divTotal);
+
+  // Agregar al carritoContainer
+  carritoContainer.appendChild(divAcciones);
+
+
 }
 
 // Mostrar mensaje dinámico
@@ -374,5 +438,58 @@ document.addEventListener("DOMContentLoaded", async () => {
       position: "right",
       backgroundColor: "red"
     }).showToast();
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("formContacto");
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const mensaje = document.getElementById("mensaje").value.trim();
+
+      if (!nombre || !email || !mensaje) {
+        Toastify({
+          text: "Todos los campos son obligatorios",
+          duration: 3000,
+          gravity: "top",
+          position: "center",
+          backgroundColor: "red"
+        }).showToast();
+        return;
+      }
+
+      // Validar email simple
+      const regexEmail = /\S+@\S+\.\S+/;
+      if (!regexEmail.test(email)) {
+        Toastify({
+          text: "Email inválido",
+          duration: 3000,
+          gravity: "top",
+          position: "center",
+          backgroundColor: "orange"
+        }).showToast();
+        return;
+      }
+
+      // Guardar mensaje en LocalStorage
+      const mensajes = JSON.parse(localStorage.getItem("mensajesContacto")) || [];
+      mensajes.push({ nombre, email, mensaje, fecha: new Date().toLocaleString() });
+      localStorage.setItem("mensajesContacto", JSON.stringify(mensajes));
+
+      form.reset();
+
+      Toastify({
+        text: "¡Mensaje enviado con éxito!",
+        duration: 3000,
+        gravity: "top",
+        position: "center",
+        backgroundColor: "green"
+      }).showToast();
+    });
   }
 });
