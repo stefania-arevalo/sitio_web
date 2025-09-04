@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "nombre": "Remera rayada",
+      "categoria": "Ropa",
+      "precio": 8000,
+      "descuento": 0,
+      "stock": 10,
+      "imagen": "../assets/remera.webp",
+      "colores": ["#607d8b", "#795548"]
+    },
+    {
+      "id": 2,
+      "nombre": "Conjunto",
+      "categoria": "Ropa",
+      "precio": 12500,
+      "descuento": 0,
+      "stock": 5,
+      "imagen": "../assets/conjunto.webp",
+      "colores": ["#ff6384", "#000", "#fff"]
+    },
+    {
+      "id": 3,
+      "nombre": "Campera Ecocuero",
+      "categoria": "Ropa",
+      "precio": 28000,
+      "descuento": 0,
+      "stock": 8,
+      "imagen": "../assets/campera.webp",
+      "colores": ["#000", "#fff"]
+    }
+  ]
+  

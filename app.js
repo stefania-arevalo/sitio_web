@@ -1,5 +1,3 @@
-console.log("app.js cargado correctamente");
-
 // Clase Producto
 class Producto {
   constructor(id, nombre, categoria, precio, descuento = 0, stock = 0) {
@@ -25,26 +23,6 @@ class Producto {
 // Variables globales
 let productos = [];
 let carrito = [];
-
-// Cargar productos base con imagen y colores
-function cargarProductosBase() {
-  productos = [
-    new Producto(1, "Remera rayada", "Ropa", 8000, 0, 10),
-    new Producto(2, "Conjunto", "Ropa", 12500, 0, 5),
-    new Producto(3, "Campera Ecocuero", "Ropa", 28000, 0, 8)
-  ];
-  productos[0].imagen = "../assets/remera.webp";
-  productos[0].colores = ["#607d8b", "#795548"];
-
-  productos[1].imagen = "../assets/conjunto.webp";
-  productos[1].colores = ["#ff6384", "#000", "#fff"];
-
-  productos[2].imagen = "../assets/campera.webp";
-  productos[2].colores = ["#000", "#fff"];
-
-  productos.forEach(p => p.aplicarIVA());
-  
-}
 
 // Guardar y obtener localStorage
 function guardarEnLocalStorage(clave, valor) {
@@ -218,8 +196,15 @@ function agregarAlCarrito(id, color, cantidad) {
   }
   guardarEnLocalStorage("carrito", carrito);
   actualizarContadorCarrito();
-  mostrarCarrito();  // Mostrar el carrito automáticamente cuando agregas
-  abrirModal();
+  // ✅ Mostrar notificación Toastify
+  Toastify({
+    text: `${prod.nombre} agregado al carrito`,
+    duration: 3000,
+    gravity: "top",
+    position: "right",
+    backgroundColor: "#ff69b4"
+  }).showToast();
+
 }
 
 // Actualizar contador carrito
@@ -308,59 +293,86 @@ function cerrarModal() {
 }
 
 // Inicialización y eventos
-document.addEventListener("DOMContentLoaded", () => {
-  const prodsLS = obtenerDeLocalStorage("productos");
-  if (prodsLS && prodsLS.length > 0) {
-    productos = prodsLS.map(p => {
-      const prod = new Producto(p.id, p.nombre, p.categoria, p.precio, p.descuento, p.stock);
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    // Cargar productos desde productos.json
+    const response = await fetch("../productos.json");
+    const data = await response.json();
+
+    productos = data.map(p => {
+      const prod = new Producto(
+        p.id,
+        p.nombre,
+        p.categoria,
+        p.precio,
+        p.descuento,
+        p.stock
+      );
       prod.imagen = p.imagen || "";
       prod.colores = p.colores || [];
+      prod.aplicarIVA?.(); // si tu clase Producto tiene este método
       return prod;
     });
-  } else {
-    cargarProductosBase();
-    guardarEnLocalStorage("productos", productos);
-  }
 
-  carrito = obtenerDeLocalStorage("carrito") || [];
-  carrito = carrito.map(item => {
-    const prod = productos.find(p => p.id === item.id);
-    return {
-      id: item.id,
-      color: item.color,
-      cantidad: item.cantidad,
-      producto: prod || null
-    };
-  });
+    // Restaurar carrito desde LocalStorage
+    carrito = obtenerDeLocalStorage("carrito") || [];
+    carrito = carrito.map(item => {
+      const prod = productos.find(p => p.id === item.id);
+      return {
+        id: item.id,
+        color: item.color,
+        cantidad: item.cantidad,
+        producto: prod || null
+      };
+    });
 
-  mostrarCatalogo(productos);
-  actualizarContadorCarrito();
+    // Mostrar catálogo inicial
+    mostrarCatalogo(productos);
+    actualizarContadorCarrito();
 
-  // Eventos modal carrito
-  document.getElementById("iconoCarrito").addEventListener("click", abrirModal);
-  document.getElementById("cerrarModal").addEventListener("click", cerrarModal);
-
-  window.addEventListener("click", e => {
-    const modal = document.getElementById("modalCarrito");
-    if (e.target === modal) {
-      cerrarModal();
+    // Eventos modal carrito
+    const iconoCarrito = document.getElementById("iconoCarrito");
+    const cerrarCarrito = document.getElementById("cerrarModal");
+    if (iconoCarrito) {
+      iconoCarrito.addEventListener("click", abrirModal);
     }
-  });
+    if (cerrarCarrito) {
+      cerrarCarrito.addEventListener("click", cerrarModal);
+    }
 
-  // Buscador con lupa
-  const iconoBuscador = document.getElementById("iconoBuscador");
-  const buscador = document.getElementById("buscador");
-
-  if (iconoBuscador && buscador) {
-    iconoBuscador.addEventListener("click", () => buscador.classList.toggle("d-none"));
-
-    buscador.addEventListener("input", e => {
-      const termino = e.target.value.trim();
-      if (termino.length === 0) {
-        mostrarCatalogo(productos);
-      } else {
-        filtrarProductos(termino);
+    window.addEventListener("click", e => {
+      const modal = document.getElementById("modalCarrito");
+      if (e.target === modal) {
+        cerrarModal();
       }
     });
+
+    // Buscador con lupa
+    const iconoBuscador = document.getElementById("iconoBuscador");
+    const buscador = document.getElementById("buscador");
+
+    if (iconoBuscador && buscador) {
+      iconoBuscador.addEventListener("click", () =>
+        buscador.classList.toggle("d-none")
+      );
+
+      buscador.addEventListener("input", e => {
+        const termino = e.target.value.trim();
+        if (termino.length === 0) {
+          mostrarCatalogo(productos);
+        } else {
+          filtrarProductos(termino);
+        }
+      });
+    }
+  } catch (error) {
+    // Mostrar notificación de error con Toastify
+    Toastify({
+      text: "Error al cargar productos",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "red"
+    }).showToast();
   }
 });
