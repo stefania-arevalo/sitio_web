@@ -358,86 +358,90 @@ function cerrarModal() {
 
 // Inicialización y eventos
 document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    // Cargar productos desde productos.json
-    const response = await fetch("../productos.json");
-    const data = await response.json();
+  const contenedorCatalogo = document.getElementById("catalogo");
 
-    productos = data.map(p => {
-      const prod = new Producto(
-        p.id,
-        p.nombre,
-        p.categoria,
-        p.precio,
-        p.descuento,
-        p.stock
-      );
-      prod.imagen = p.imagen || "";
-      prod.colores = p.colores || [];
-      prod.aplicarIVA?.(); // si tu clase Producto tiene este método
-      return prod;
-    });
+  if (contenedorCatalogo) { // Solo si existe el contenedor
+    try {
+      // Cargar productos desde productos.json
+      const response = await fetch("../productos.json");
+      const data = await response.json();
 
-    // Restaurar carrito desde LocalStorage
-    carrito = obtenerDeLocalStorage("carrito") || [];
-    carrito = carrito.map(item => {
-      const prod = productos.find(p => p.id === item.id);
-      return {
-        id: item.id,
-        color: item.color,
-        cantidad: item.cantidad,
-        producto: prod || null
-      };
-    });
+      productos = data.map(p => {
+        const prod = new Producto(
+          p.id,
+          p.nombre,
+          p.categoria,
+          p.precio,
+          p.descuento,
+          p.stock
+        );
+        prod.imagen = p.imagen || "";
+        prod.colores = p.colores || [];
+        prod.aplicarIVA?.(); // si tu clase Producto tiene este método
+        return prod;
+      });
 
-    // Mostrar catálogo inicial
-    mostrarCatalogo(productos);
-    actualizarContadorCarrito();
+      // Restaurar carrito desde LocalStorage
+      carrito = obtenerDeLocalStorage("carrito") || [];
+      carrito = carrito.map(item => {
+        const prod = productos.find(p => p.id === item.id);
+        return {
+          id: item.id,
+          color: item.color,
+          cantidad: item.cantidad,
+          producto: prod || null
+        };
+      });
 
-    // Eventos modal carrito
-    const iconoCarrito = document.getElementById("iconoCarrito");
-    const cerrarCarrito = document.getElementById("cerrarModal");
-    if (iconoCarrito) {
-      iconoCarrito.addEventListener("click", abrirModal);
-    }
-    if (cerrarCarrito) {
-      cerrarCarrito.addEventListener("click", cerrarModal);
-    }
+      // Mostrar catálogo inicial
+      mostrarCatalogo(productos);
+      actualizarContadorCarrito();
 
-    window.addEventListener("click", e => {
-      const modal = document.getElementById("modalCarrito");
-      if (e.target === modal) {
-        cerrarModal();
+      // Eventos modal carrito
+      const iconoCarrito = document.getElementById("iconoCarrito");
+      const cerrarCarrito = document.getElementById("cerrarModal");
+      if (iconoCarrito) {
+        iconoCarrito.addEventListener("click", abrirModal);
       }
-    });
+      if (cerrarCarrito) {
+        cerrarCarrito.addEventListener("click", cerrarModal);
+      }
 
-    // Buscador con lupa
-    const iconoBuscador = document.getElementById("iconoBuscador");
-    const buscador = document.getElementById("buscador");
-
-    if (iconoBuscador && buscador) {
-      iconoBuscador.addEventListener("click", () =>
-        buscador.classList.toggle("d-none")
-      );
-
-      buscador.addEventListener("input", e => {
-        const termino = e.target.value.trim();
-        if (termino.length === 0) {
-          mostrarCatalogo(productos);
-        } else {
-          filtrarProductos(termino);
+      window.addEventListener("click", e => {
+        const modal = document.getElementById("modalCarrito");
+        if (e.target === modal) {
+          cerrarModal();
         }
       });
+
+      // Buscador con lupa
+      const iconoBuscador = document.getElementById("iconoBuscador");
+      const buscador = document.getElementById("buscador");
+
+      if (iconoBuscador && buscador) {
+        iconoBuscador.addEventListener("click", () =>
+          buscador.classList.toggle("d-none")
+        );
+
+        buscador.addEventListener("input", e => {
+          const termino = e.target.value.trim();
+          if (termino.length === 0) {
+            mostrarCatalogo(productos);
+          } else {
+            filtrarProductos(termino);
+          }
+        });
+      }
+    } catch (error) {
+      // Mostrar notificación de error con Toastify
+      Toastify({
+        text: "Error al cargar productos",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "red"
+      }).showToast();
     }
-  } catch (error) {
-    // Mostrar notificación de error con Toastify
-    Toastify({
-      text: "Error al cargar productos",
-      duration: 3000,
-      gravity: "top",
-      position: "right",
-      backgroundColor: "red"
-    }).showToast();
   }
 });
 
