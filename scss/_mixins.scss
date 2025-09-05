@@ -10,3 +10,12 @@
 @mixin infinite-scroll($duration: 10s) {
     animation: scroll-horizontal $duration linear infinite;
 }
+
+// Spin loader
+@mixin spin($duration: 1s, $timing: linear, $iteration: infinite) {
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  animation: spin $duration $timing $iteration;
+}

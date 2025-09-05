@@ -176,10 +176,14 @@ function crearTarjetaProducto(prod) {
 function mostrarCatalogo(lista) {
   const contenedor = document.getElementById("catalogo");
   contenedor.innerHTML = ""; // Limpio contenedor
-
-  lista.forEach(prod => {
+  
+  lista.forEach((prod, index) => {
     const tarjeta = crearTarjetaProducto(prod);
-    contenedor.appendChild(tarjeta);
+    //clases de Animate.css
+    tarjeta.classList.add("animate__animated", "animate__fadeInUp");
+    tarjeta.style.setProperty("--animate-delay", `${index * 0.1}s`); // retraso escalonado
+
+    contenedor.appendChild(tarjeta); 
   });
 }
 
@@ -362,6 +366,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (contenedorCatalogo) { // Solo si existe el contenedor
     try {
+      // MOSTRAR LOADER
+      contenedorCatalogo.innerHTML = `<div class="loader"></div>`;
       // Cargar productos desde productos.json
       const response = await fetch("../productos.json");
       const data = await response.json();
